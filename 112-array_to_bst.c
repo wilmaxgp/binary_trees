@@ -19,8 +19,7 @@ bst_t *array_to_bst(int *array, size_t size)
     {
         if (bst_insert(&root, array[i]) == NULL)
         {
-            /* Error occurred, free allocated memory */
-            binary_tree_delete(root);
+            /* Error occurred, return NULL */
             return (NULL);
         }
     }
