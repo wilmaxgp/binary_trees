@@ -2,32 +2,41 @@
 #include <stdlib.h>
 
 /**
- * binary_tree_insert_left - Inserts a node as the left-child of another node
- * @parent: Pointer to the node to insert the left-child in
- * @value: Value to store in the new node
+ * avl_insert - Inserts a value in an AVL Tree
+ * @tree: A double pointer to the root node of the AVL tree
+ * @value: The value to store in the node to be inserted
  *
- * Return: Pointer to the created node, or NULL on failure or if parent is NULL
+ * Return: A pointer to the created node, or NULL on failure
  */
-binary_tree_t *binary_tree_insert_left(binary_tree_t *parent, int value)
+avl_t *avl_insert(avl_t **tree, int value)
 {
-	binary_tree_t *new_node;
-
-	if (parent == NULL)
+	if (tree == NULL)
 		return (NULL);
 
-	new_node = malloc(sizeof(binary_tree_t));
-	if (new_node == NULL)
-		return (NULL);
+    if (*tree == NULL)
+    {
+        *tree = binary_tree_node(NULL, value);
+        if (*tree == NULL)
+            return (NULL);
+        return (*tree);
+    }
 
-	new_node->n = value;
-	new_node->parent = parent;
-	new_node->left = parent->left;
-	new_node->right = NULL;
+    if (value < (*tree)->n)
+    {
+        (*tree)->left = avl_insert(&((*tree)->left), value);
+        if ((*tree)->left == NULL)
+            return (NULL);
+    }
+    else if (value > (*tree)->n)
+    {
+        (*tree)->right = avl_insert(&((*tree)->right), value);
+        if ((*tree)->right == NULL)
+            return (NULL);
+    }
+    else
+        return (NULL);
 
-	if (parent->left != NULL)
-		parent->left->parent = new_node;
+    binary_tree_balance(*tree);
 
-	parent->left = new_node;
-
-	return (new_node);
+    return (*tree);
 }
