@@ -1,5 +1,3 @@
-#include "binary_trees.h"
-
 /**
  * avl_insert - Inserts a value in an AVL Tree
  * @tree: A double pointer to the root node of the AVL tree
@@ -9,30 +7,33 @@
  */
 avl_t *avl_insert(avl_t **tree, int value)
 {
-	if (*tree == NULL)
-	{
-		*tree = binary_tree_node(NULL, value);
-		if (*tree == NULL)
-			return (NULL);
-		return (*tree);
-	}
+    if (tree == NULL)
+        return (NULL);
 
-	if (value < (*tree)->n)
-	{
-		(*tree)->left = avl_insert(&((*tree)->left), value);
-		if ((*tree)->left == NULL)
-			return (NULL);
-	}
-	else if (value > (*tree)->n)
-	{
-		(*tree)->right = avl_insert(&((*tree)->right), value);
-		if ((*tree)->right == NULL)
-			return (NULL);
-	}
-	else
-		return (NULL);
+    if (*tree == NULL)
+    {
+        *tree = binary_tree_node(NULL, value);
+        if (*tree == NULL)
+            return (NULL);
+        return (*tree);
+    }
 
-	binary_tree_balance(*tree);
+    if (value < (*tree)->n)
+    {
+        (*tree)->left = avl_insert(&((*tree)->left), value);
+        if ((*tree)->left == NULL)
+            return (NULL);
+    }
+    else if (value > (*tree)->n)
+    {
+        (*tree)->right = avl_insert(&((*tree)->right), value);
+        if ((*tree)->right == NULL)
+            return (NULL);
+    }
+    else
+        return (NULL);
 
-	return (*tree);
+    binary_tree_balance(*tree);
+
+    return (*tree);
 }
