@@ -48,7 +48,7 @@ avl_t *avl_insert(avl_t **tree, int value)
     /* Left Right Case */
 	if (balance > 1 && value > (*tree)->left->n)
 	{
-		(*tree)->left = binary_tree_rotate_left((*tree)->left)
+		(*tree)->left = binary_tree_rotate_left((*tree)->left);
 			return (binary_tree_rotate_right(*tree));
 	}
 
