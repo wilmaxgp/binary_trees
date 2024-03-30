@@ -9,6 +9,8 @@
  */
 avl_t *avl_insert(avl_t **tree, int value)
 {
+    int balance;
+
     if (*tree == NULL)
     {
         *tree = binary_tree_node(NULL, value);
@@ -33,7 +35,7 @@ avl_t *avl_insert(avl_t **tree, int value)
         return (NULL);
 
     /* Update the height and balance factor */
-    int balance = binary_tree_balance(*tree);
+    balance = binary_tree_balance(*tree);
 
     /* Left Left Case */
     if (balance > 1 && value < (*tree)->left->n)
