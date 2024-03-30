@@ -12,27 +12,27 @@ avl_t *avl_insert(avl_t **tree, int value)
     if (*tree == NULL)
     {
         *tree = binary_tree_node(NULL, value);
-        if (*tree == NULL)
-            return (NULL);
-        return (*tree);
+        return *tree; // Return root if tree is empty
     }
 
     if (value < (*tree)->n)
     {
         (*tree)->left = avl_insert(&((*tree)->left), value);
         if ((*tree)->left == NULL)
-            return (NULL);
+            return NULL; // Allocation failure
     }
     else if (value > (*tree)->n)
     {
         (*tree)->right = avl_insert(&((*tree)->right), value);
         if ((*tree)->right == NULL)
-            return (NULL);
+            return NULL; // Allocation failure
     }
     else
-        return (NULL);
+    {
+        // Handle duplicate values according to your strategy
+        // For example, you may choose to disallow duplicates
+        // return NULL;
+    }
 
-    binary_tree_balance(*tree);
-
-    return (*tree);
-}
+    // Re-balance the tree after insertion
+    binary_tree_balance(*tree
