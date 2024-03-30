@@ -35,4 +35,4 @@ avl_t *avl_insert(avl_t **tree, int value)
     }
 
     // Re-balance the tree after insertion
-    binary_tree_balance(*tree
+    binary_tree_balance(*tree)
