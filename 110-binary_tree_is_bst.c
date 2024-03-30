@@ -1,4 +1,7 @@
 #include "binary_trees.h"
+#include <limits.h> /* Include limits.h for INT_MIN and INT_MAX */
+
+int bst_util(const binary_tree_t *tree, int min, int max);
 
 /**
  * binary_tree_is_bst - Checks if a binary tree is a valid Binary Search Tree
