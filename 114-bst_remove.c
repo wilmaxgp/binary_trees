@@ -1,5 +1,5 @@
 #include "binary_trees.h"
-
+#include <stdlib.h>
 /**
  * bst_remove - Removes a node from a Binary Search Tree
  * @root: Pointer to the root node of the tree where the node will be removed
